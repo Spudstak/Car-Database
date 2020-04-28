@@ -1,0 +1,30 @@
+<!--
+Created By Ethan Johnston for CMP 621A
+Header
+-->
+<!-- Calling in materialize css -->
+<head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<style>
+{% block styles %}
+{% endblock %}
+</style>
+<body>
+<!-- adding the navbar and messages to this html file -->
+	{% include "main/includes/navbar.html" %}
+	{% include "main/includes/messages.html" %}
+<!-- Creating a container so that the website isn't so squished together -->
+	<div class="container">
+		<br>
+		{% block content %}
+		{% endblock %}
+	</div>
+</body>
+<!-- Initializing materialize css -->
+<script>M.AutoInit();</script>

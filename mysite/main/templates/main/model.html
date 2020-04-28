@@ -1,0 +1,44 @@
+<!--
+Created By Ethan Johnston for CMP 621A
+Model
+-->
+<!-- Adding the header to this html file -->
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+    <div class="row">
+	<!-- Creating pages that show when the user has clicked on the specific car model they want some information regarding the car will show along with a picture -->
+        <div class="col s12, m8, l8">
+		<!-- Showing the car title -->
+            <h3>{{car.model_title}}</h3>
+		<!-- Showing when the data was entered by the superuser -->
+            <p style="font-size:70%">Last Edited {{car.model_published}}</p>
+            <p>{{car.model_info|safe}}</p>
+		<!-- Showing an image of the car -->
+			<div style="height:400px;"><img src="{{car.model_image.url}}", style="height:100%; width:100%; object-fit:contain;" alt="{{car.model_image}}"></div>
+        </div>
+		<!-- Creating a navbar that shows other cars that are made by the same manufacturer and are of the same type -->
+        <div class="col s12 m4 l4">
+            <ul class="collapsible popout">
+                {% for car in sidebar %}
+                    {% if forloop.counter0 == this_car_idx %}
+                        <li class="active">
+                            <div class="collapsible-header">{{car.model_title}}<br>(currently viewing)</div>
+                        </li>
+                    {% else %}
+                        <li>
+                            <div class="collapsible-header">{{car.model_title}}</div>
+                            <div class="collapsible-body">
+                                <p><a href="/{{car.model_slug}}"><button class="btn waves-effect waves-light right-align">Go</button></a></p>
+
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+{% endblock %}

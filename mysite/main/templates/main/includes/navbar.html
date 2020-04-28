@@ -1,0 +1,86 @@
+<!--
+Created By Ethan Johnston for CMP 621A
+Navbar
+-->
+<!-- Importing style sheets -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!-- Changing the color of the navbar to blue, changing the color when hovering over the navbar, causing a spinning animation when buttons on navbar are hovered over -->
+	<style>
+		nav{
+		background-color: blue !important
+		}
+		li a:hover{
+		background-color: darkblue !important;
+		}
+		.regular {
+			position: relative;
+			left: -11px;
+		}
+		.fa-spin {
+			color: transparent;
+			position: relative;
+			left: 8px;
+		}
+		ul li a:hover .fa-spin {
+			color: white;
+		}
+		ul li a:hover .regular {
+			color: transparent;
+		}
+		.icons {
+			padding-right: 0px !important;
+		}
+	</style>
+<nav>
+	<div class="nav-wrapper">
+	<!-- Creating the title on the navbar and the car icon -->
+			<a href="/" class="brand-logo icons">Car Database
+				<i class="fa fa-car fa-spin"></i>
+				<i class="fa fa-car regular"></i>
+			</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+	<!-- Creating the searchbar (doesn't actually work) -->
+				<li>
+					<form method="get">
+						<div class="input-field">
+						  <input id="search" type="search" required name="search">
+						  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+						  <i class="material-icons">close</i>
+						</div>
+					</form>
+				</li>
+	<!-- Creating the home box and home icon -->
+				<li>
+					<a class="icons" href="/">Home 
+						<i class="fa fa-home fa-spin"></i>
+						<i class="fa fa-home regular"></i>
+					</a>
+				</li>
+	<!-- Setting parameters so that the navbar will show certain boxes on depending if wether or not a use is logged in -->
+				{% if user.is_authenticated %}
+	<!-- Creating the user box and user icon -->
+					<li><a class="icons" href="/account">{{user.username}}
+						<i class="fa fa-user fa-spin"></i>
+						<i class="fa fa-user regular"></i>
+					</a></li>
+	<!-- Creating the logout box and the logout icon -->
+					<li><a class="icons" href="/logout">Logout
+						<i class="fa fa-sign-out fa-spin"></i>
+						<i class="fa fa-sign-out regular"></i>
+					</a></li>
+				{% else %}
+	<!-- Creating the register box and the register icon -->
+					<li><a class="icons" href="/register">Register
+						<i class="fa fa-user-circle fa-spin"></i>
+						<i class="fa fa-user-circle regular"></i>
+					</a></li>
+	<!-- Creating the login box and the login icon -->
+					<li><a class="icons" href="/login">Login
+						<i class="fa fa-sign-in fa-spin"></i>
+						<i class="fa fa-sign-in regular"></i>
+					</a></li>
+				{% endif %}
+			</ul>
+	</div>
+</nav>
